@@ -2,6 +2,7 @@ package com.resumebuilder.web;
 
 import com.resumebuilder.application.service.ResumeService;
 import com.resumebuilder.domain.model.Resume;
+import com.resumebuilder.web.dto.CreateEntryRequest;
 import com.resumebuilder.web.dto.CreateResumeRequest;
 import com.resumebuilder.web.dto.CreateSectionRequest;
 import com.resumebuilder.web.dto.UpdateResumeRequest;
@@ -67,6 +68,18 @@ public class ResumeController {
                 id,
                 request.getType(),
                 request.getDisplayName());
+    }
+
+    @PostMapping("/{resumeId}/sections/{sectionId}/entries")
+    public Resume addEntry(
+            @PathVariable String resumeId,
+            @PathVariable String sectionId,
+            @RequestBody CreateEntryRequest request) {
+
+        return resumeService.addEntry(
+                resumeId,
+                sectionId,
+                request.getValues());
     }
 
 }

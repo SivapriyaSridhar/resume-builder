@@ -5,6 +5,7 @@ import com.resumebuilder.domain.model.Resume;
 import com.resumebuilder.domain.model.Section;
 
 import org.springframework.stereotype.Service;
+import com.resumebuilder.domain.model.Entry;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +67,28 @@ public class ResumeService {
         section.setOrder(resume.getSections().size());
 
         resume.getSections().add(section);
+
+        return resumeRepository.save(resume);
+    }
+
+    public Resume addEntry(
+            String resumeId,
+            String sectionId,
+            java.util.Map<String, Object> values) {
+
+        Resume resume = resumeRepository.findById(resumeId)
+                .orElseThrow(() -> new RuntimeException("Resume not found"));
+
+        Section section = resume.getSections()
+                .stream()
+                .filter(s -> s.getId().equals(sectionId))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Section not found"));
+
+        Entry entry = new Entry();
+        entry.setValues(values);
+
+        section.getEntries().add(entry);
 
         return resumeRepository.save(resume);
     }

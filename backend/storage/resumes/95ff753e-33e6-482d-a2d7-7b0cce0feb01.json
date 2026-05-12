@@ -8,6 +8,13 @@
     "type" : "education",
     "displayName" : "Education",
     "order" : 0,
-    "entries" : [ ]
+    "entries" : [ {
+      "id" : "80c9ed4d-2676-4a15-ad18-e383315c9791",
+      "values" : {
+        "college" : "SRM University",
+        "degree" : "B.Tech",
+        "cgpa" : "8.2"
+      }
+    } ]
   } ]
 }
