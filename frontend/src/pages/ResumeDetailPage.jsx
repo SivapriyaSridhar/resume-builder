@@ -47,7 +47,30 @@ function ResumeDetailPage() {
 
           <p>Type: {section.type}</p>
 
-          <p>Entries: {section.entries.length}</p>
+          {section.entries.map((entry) => (
+
+  <div
+    key={entry.id}
+    style={{
+      border: "1px solid gray",
+      padding: "10px",
+      marginTop: "10px"
+    }}
+  >
+
+    {Object.entries(entry.values).map(([key, value]) => (
+
+      <p key={key}>
+
+        <strong>{key}:</strong> {value}
+
+      </p>
+
+    ))}
+
+  </div>
+
+))}
 
         </div>
 
