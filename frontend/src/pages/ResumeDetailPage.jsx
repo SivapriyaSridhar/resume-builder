@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getResumeById, addSection, addEntry } from "../services/resumeService";
+import sectionFields from "../config/sectionFields";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -130,41 +131,25 @@ function ResumeDetailPage() {
                 marginBottom: "10px",
               }}
             >
-              <input
-                type="text"
-                placeholder="College / Company / Skill"
-                value={entryFields.field1}
-                onChange={(e) =>
-                  setEntryFields({
-                    ...entryFields,
-                    field1: e.target.value,
-                  })
-                }
-              />
-
-              <input
-                type="text"
-                placeholder="Degree / Role / Level"
-                value={entryFields.field2}
-                onChange={(e) =>
-                  setEntryFields({
-                    ...entryFields,
-                    field2: e.target.value,
-                  })
-                }
-              />
-
-              <input
-                type="text"
-                placeholder="CGPA / Experience / Notes"
-                value={entryFields.field3}
-                onChange={(e) =>
-                  setEntryFields({
-                    ...entryFields,
-                    field3: e.target.value,
-                  })
-                }
-              />
+              {(
+                sectionFields[section.type] || ["Field 1", "Field 2", "Field 3"]
+              ).map((field, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  placeholder={field.label}
+                  value={entryFields[field.key]}
+                  onChange={(e) =>
+                    setEntryFields({
+                      ...entryFields,
+                      [field.key]: e.target.value,
+                    })
+                  }
+                  style={{
+                    marginRight: "10px",
+                  }}
+                />
+              ))}
 
               <button onClick={() => handleAddEntry(section.id)}>
                 Add Entry
@@ -185,9 +170,9 @@ function ResumeDetailPage() {
                 marginTop: "10px",
               }}
             >
-              {Object.entries(entry.values).map(([key, value]) => (
-                <p key={key}>
-                  <strong>{key}:</strong> {value}
+              {(sectionFields[section.type] || []).map((field) => (
+                <p key={field.key}>
+                  <strong>{field.label}:</strong> {entry.values[field.key]}
                 </p>
               ))}
             </div>
