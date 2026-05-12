@@ -3,8 +3,11 @@ package com.resumebuilder.web;
 import com.resumebuilder.application.service.ResumeService;
 import com.resumebuilder.domain.model.Resume;
 import com.resumebuilder.web.dto.CreateResumeRequest;
+import com.resumebuilder.web.dto.UpdateResumeRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class ResumeController {
     }
 
     @PostMapping
-    public Resume createResume(@RequestBody CreateResumeRequest request) {
+    public Resume createResume(@Valid @RequestBody CreateResumeRequest request) {
 
         return resumeService.createResume(request.getTitle());
     }
@@ -45,4 +48,13 @@ public class ResumeController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public Resume updateResume(
+            @PathVariable String id,
+            @Valid @RequestBody UpdateResumeRequest request) {
+
+        return resumeService.updateResume(id, request.getTitle());
+    }
+
 }

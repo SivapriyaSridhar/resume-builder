@@ -39,4 +39,14 @@ public class ResumeService {
     public void deleteResume(String id) {
         resumeRepository.deleteById(id);
     }
+
+    public Resume updateResume(String id, String title) {
+
+        Resume existingResume = resumeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Resume not found"));
+
+        existingResume.setTitle(title);
+
+        return resumeRepository.save(existingResume);
+    }
 }

@@ -2,7 +2,7 @@ package com.resumebuilder.web.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CreateResumeRequest {
+public class UpdateResumeRequest {
 
     @NotBlank(message = "Title is required")
     private String title;
