@@ -24,18 +24,18 @@ function ModernTemplate({ resume, theme }) {
 
       {resume.sections.map((section) => (
         <div key={section.id} className="mb-10">
-          <h2 className="text-3xl font-bold text-cyan-300 mb-6">
+          <h2 className="text-3xl font-bold ${theme.subtitle} mb-6">
             {section.displayName}
           </h2>
 
           {section.entries.map((entry) => (
             <div
               key={entry.id}
-              className="bg-slate-950 border border-slate-800 rounded-xl p-5 mb-5"
+              className="${theme.background} border ${theme.border} rounded-xl p-5 mb-5"
             >
               {(sectionFields[section.type] || []).map((field) => (
-                <p key={field.key} className="mb-2 text-slate-300">
-                  <strong className="text-cyan-400">{field.label}:</strong>{" "}
+                <p key={field.key} className="mb-2 ${theme.text}">
+                  <strong className="${theme.title}">{field.label}:</strong>{" "}
                   {entry.values[field.key]}
                 </p>
               ))}

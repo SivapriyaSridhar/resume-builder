@@ -6,6 +6,7 @@ const themes = {
     title: "text-cyan-400",
     subtitle: "text-cyan-300",
     button: "bg-cyan-500 hover:bg-cyan-600",
+    text: "text-slate-300",
   },
 
   corporateGray: {
@@ -15,6 +16,7 @@ const themes = {
     title: "text-gray-800",
     subtitle: "text-gray-700",
     button: "bg-gray-700 hover:bg-gray-800",
+    text: "text-gray-700",
   },
 
   minimalWhite: {
@@ -24,6 +26,7 @@ const themes = {
     title: "text-black",
     subtitle: "text-gray-700",
     button: "bg-black hover:bg-gray-800",
+    text: "text-gray-800",
   },
 };
 
