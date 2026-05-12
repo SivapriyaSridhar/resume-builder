@@ -7,8 +7,10 @@ import ClassicTemplate from "../templates/ClassicTemplate";
 import ModernTemplate from "../templates/ModernTemplate";
 import {
   exportResumeAsPdf,
-  exportResumeAsDoc
+  exportResumeAsDoc,
 } from "../services/exportService";
+
+import themes from "../themes/themeConfig";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -25,6 +27,9 @@ function ResumeDetailPage() {
   });
 
   const [selectedTemplate, setSelectedTemplate] = useState("modern");
+  const [selectedTheme, setSelectedTheme] = useState("cyberBlue");
+
+  const theme = themes[selectedTheme];
 
   useEffect(() => {
     loadResume();
@@ -128,6 +133,22 @@ function ResumeDetailPage() {
         </select>
       </div>
 
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Theme</h2>
+
+        <select
+          value={selectedTheme}
+          onChange={(e) => setSelectedTheme(e.target.value)}
+          className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+        >
+          <option value="cyberBlue">Cyber Blue</option>
+
+          <option value="corporateGray">Corporate Gray</option>
+
+          <option value="minimalWhite">Minimal White</option>
+        </select>
+      </div>
+
       <h2 className="text-3xl font-bold mb-6 text-white">Sections</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -197,29 +218,23 @@ function ResumeDetailPage() {
 
       <div className="mt-16">
         <h2 className="text-3xl font-bold mb-6">Resume Preview</h2>
-<div className="flex gap-4 mb-6">
+        <div className="flex gap-4 mb-6">
+          <button
+            onClick={() => exportResumeAsPdf()}
+            className="bg-green-500 hover:bg-green-600 px-5 py-3 rounded-lg font-semibold transition"
+          >
+            Export PDF
+          </button>
 
-  <button
-    onClick={() =>
-      exportResumeAsPdf()
-    }
-    className="bg-green-500 hover:bg-green-600 px-5 py-3 rounded-lg font-semibold transition"
-  >
-    Export PDF
-  </button>
-
-  <button
-    onClick={() =>
-      exportResumeAsDoc(resume)
-    }
-    className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-lg font-semibold transition"
-  >
-    Export DOC
-  </button>
-
-</div>
+          <button
+            onClick={() => exportResumeAsDoc(resume)}
+            className="bg-blue-500 hover:bg-blue-600 px-5 py-3 rounded-lg font-semibold transition"
+          >
+            Export DOC
+          </button>
+        </div>
         {selectedTemplate === "modern" ? (
-          <ModernTemplate resume={resume} />
+          <ModernTemplate resume={resume} theme={theme} />
         ) : (
           <ClassicTemplate resume={resume} />
         )}
