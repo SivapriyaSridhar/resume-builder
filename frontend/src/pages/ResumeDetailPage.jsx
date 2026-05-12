@@ -9,8 +9,12 @@ function ResumeDetailPage() {
 
   const [sectionType, setSectionType] = useState("");
   const [sectionDisplayName, setSectionDisplayName] = useState("");
-  const [fieldName, setFieldName] = useState("");
-  const [fieldValue, setFieldValue] = useState("");
+
+  const [entryFields, setEntryFields] = useState({
+    field1: "",
+    field2: "",
+    field3: "",
+  });
 
   useEffect(() => {
     loadResume();
@@ -42,24 +46,26 @@ function ResumeDetailPage() {
   }
 
   async function handleAddEntry(sectionId) {
-    if (!fieldName.trim()) {
-      alert("Enter field name");
+    const values = {};
+
+    Object.entries(entryFields).forEach(([key, value]) => {
+      if (value.trim()) {
+        values[key] = value;
+      }
+    });
+
+    if (Object.keys(values).length === 0) {
+      alert("Enter at least one field");
       return;
     }
-
-    if (!fieldValue.trim()) {
-      alert("Enter field value");
-      return;
-    }
-
-    const values = {
-      [fieldName]: fieldValue,
-    };
 
     await addEntry(id, sectionId, values);
 
-    setFieldName("");
-    setFieldValue("");
+    setEntryFields({
+      field1: "",
+      field2: "",
+      field3: "",
+    });
 
     loadResume();
   }
@@ -118,19 +124,52 @@ function ResumeDetailPage() {
               marginBottom: "10px",
             }}
           >
-            <input
-              type="text"
-              placeholder="Field Name"
-              value={fieldName}
-              onChange={(e) => setFieldName(e.target.value)}
-            />
+            <div
+              style={{
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+            >
+              <input
+                type="text"
+                placeholder="College / Company / Skill"
+                value={entryFields.field1}
+                onChange={(e) =>
+                  setEntryFields({
+                    ...entryFields,
+                    field1: e.target.value,
+                  })
+                }
+              />
 
-            <input
-              type="text"
-              placeholder="Field Value"
-              value={fieldValue}
-              onChange={(e) => setFieldValue(e.target.value)}
-            />
+              <input
+                type="text"
+                placeholder="Degree / Role / Level"
+                value={entryFields.field2}
+                onChange={(e) =>
+                  setEntryFields({
+                    ...entryFields,
+                    field2: e.target.value,
+                  })
+                }
+              />
+
+              <input
+                type="text"
+                placeholder="CGPA / Experience / Notes"
+                value={entryFields.field3}
+                onChange={(e) =>
+                  setEntryFields({
+                    ...entryFields,
+                    field3: e.target.value,
+                  })
+                }
+              />
+
+              <button onClick={() => handleAddEntry(section.id)}>
+                Add Entry
+              </button>
+            </div>
 
             <button onClick={() => handleAddEntry(section.id)}>
               Add Entry
