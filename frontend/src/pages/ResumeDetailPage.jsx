@@ -76,18 +76,13 @@ function ResumeDetailPage() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 className="text-5xl font-bold text-blue-400">{resume.title}</h1>
+    <div className="min-h-screen bg-slate-950 text-white p-8">
+      <h1 className="text-5xl font-bold mb-4 text-cyan-400">{resume.title}</h1>
 
-      <p>ID: {resume.id}</p>
-
-      <div
-        style={{
-          marginTop: "20px",
-          marginBottom: "20px",
-        }}
-      >
+      <p className="text-slate-400 mb-6">ID: {resume.id}</p>
+      <div className="bg-slate-900 p-6 rounded-2xl mb-8 border border-slate-800">
         <input
+          className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 mr-3 mb-3 text-white"
           type="text"
           placeholder="Section Type"
           value={sectionType}
@@ -95,13 +90,19 @@ function ResumeDetailPage() {
         />
 
         <input
+          className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 mr-3 mb-3 text-white"
           type="text"
           placeholder="Display Name"
           value={sectionDisplayName}
           onChange={(e) => setSectionDisplayName(e.target.value)}
         />
 
-        <button onClick={handleAddSection}>Add Section</button>
+        <button
+          className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
+          onClick={handleAddSection}
+        >
+          Add Section
+        </button>
       </div>
 
       <h2>Sections</h2>
@@ -109,13 +110,11 @@ function ResumeDetailPage() {
       {resume.sections.map((section) => (
         <div
           key={section.id}
-          style={{
-            border: "1px solid gray",
-            padding: "10px",
-            marginBottom: "10px",
-          }}
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6"
         >
-          <h3>{section.displayName}</h3>
+          <h3 className="text-2xl font-bold mb-3 text-cyan-300">
+            {section.displayName}
+          </h3>
 
           <p>Type: {section.type}</p>
 
@@ -135,6 +134,7 @@ function ResumeDetailPage() {
                 sectionFields[section.type] || ["Field 1", "Field 2", "Field 3"]
               ).map((field, index) => (
                 <input
+                  className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 mr-3 mb-3 text-white"
                   key={index}
                   type="text"
                   placeholder={field.label}
@@ -151,12 +151,18 @@ function ResumeDetailPage() {
                 />
               ))}
 
-              <button onClick={() => handleAddEntry(section.id)}>
+              <button
+                className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
+                onClick={() => handleAddEntry(section.id)}
+              >
                 Add Entry
               </button>
             </div>
 
-            <button onClick={() => handleAddEntry(section.id)}>
+            <button
+              className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
+              onClick={() => handleAddEntry(section.id)}
+            >
               Add Entry
             </button>
           </div>
@@ -164,14 +170,10 @@ function ResumeDetailPage() {
           {section.entries.map((entry) => (
             <div
               key={entry.id}
-              style={{
-                border: "1px solid gray",
-                padding: "10px",
-                marginTop: "10px",
-              }}
+              className="bg-slate-950 border border-slate-800 rounded-xl p-4 mt-4"
             >
               {(sectionFields[section.type] || []).map((field) => (
-                <p key={field.key}>
+                <p key={field.key} className="mb-2 text-slate-300">
                   <strong>{field.label}:</strong> {entry.values[field.key]}
                 </p>
               ))}
