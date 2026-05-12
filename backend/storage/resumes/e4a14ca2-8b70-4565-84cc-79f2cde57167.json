@@ -1,0 +1,57 @@
+{
+  "id" : "e4a14ca2-8b70-4565-84cc-79f2cde57167",
+  "title" : "Resume1",
+  "createdAt" : [ 2026, 5, 12, 23, 21, 1, 768616900 ],
+  "updatedAt" : [ 2026, 5, 12, 23, 21, 1, 768616900 ],
+  "sections" : [ {
+    "id" : "08d96d6f-7366-4c4d-99fa-f9376af8b68d",
+    "type" : "summary",
+    "displayName" : "Summary",
+    "order" : 0,
+    "entries" : [ {
+      "id" : "bd542c5e-c342-4910-97ac-031a45527832",
+      "values" : {
+        "description" : "Python Developer | Machine Learning & AI Enthusiast | Full Stack Developer | Java Programmer Computer Science undergraduate with hands-on experience in Python development, data analysis, and web application  building. Skilled in backend development, problem-solving, and creating efficient software solutions for real-world applications.  Passionate about learning emerging technologies and contributing to impactful technical projects."
+      }
+    } ]
+  }, {
+    "id" : "8f9e93ab-c007-4bd5-83e1-fe46d20e2747",
+    "type" : "education",
+    "displayName" : "Education",
+    "order" : 1,
+    "entries" : [ {
+      "id" : "5b62e9b5-1ad8-4f06-9adc-60efa0d7c568",
+      "values" : {
+        "college" : "SRM IST-Ramapuram",
+        "course" : "B.Tech",
+        "branch" : "Computer Science and Engineering",
+        "location" : "Ramapuram",
+        "score" : " 8.28",
+        "endDate" : "2027"
+      }
+    }, {
+      "id" : "768f201a-d557-43f7-a90d-9c649defa8c1",
+      "values" : {
+        "college" : "Vidhyalakshmi CBSE Higher Secondary School",
+        "course" : " XII",
+        "location" : "Vellore",
+        "score" : "7.0",
+        "endDate" : "2023"
+      }
+    } ]
+  }, {
+    "id" : "38c9c25f-4e13-4a1c-b563-2d7906ffa7ee",
+    "type" : "experience",
+    "displayName" : "Experience",
+    "order" : 2,
+    "entries" : [ {
+      "id" : "13ed3bcd-e5a7-41c7-9546-dbf0432fed81",
+      "values" : {
+        "company" : "India1 Payments Limited",
+        "jobTitle" : "Tools Development ",
+        "position" : "Intern",
+        "summary" : "Developed a Python-based Bank Statement Consolidation Tool to automate validation, merging, and reporting of multi account banking data, reducing manual reconciliation effort. Built a Tkinter-based interface for file handling and automated  transaction categorization for credits and debits. Developed frontend components for an internal Ticket Management System and supported backend API integration for  workflow tracking and issue management. Performed testing, debugging, and report validation to improve system reliability and streamline internal processes. Technologies: Python, Pandas, Tkinter, OpenPyXL, Angular, ASP.NET, HTML, CSS, JavaScript, REST APIs, Excel Automation"
+      }
+    } ]
+  } ]
+}

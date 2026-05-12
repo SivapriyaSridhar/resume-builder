@@ -11,6 +11,7 @@ import {
 } from "../services/exportService";
 
 import themes from "../themes/themeConfig";
+import ResumePreview from "../components/ResumePreview";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -233,11 +234,11 @@ function ResumeDetailPage() {
             Export DOC
           </button>
         </div>
-        {selectedTemplate === "modern" ? (
-          <ModernTemplate resume={resume} theme={theme} />
-        ) : (
-          <ClassicTemplate resume={resume} />
-        )}
+  <ResumePreview
+  resume={resume}
+  selectedTemplate={selectedTemplate}
+  theme={theme}
+/>
       </div>
     </AppLayout>
   );

@@ -1,0 +1,25 @@
+{
+  "id" : "cdc21cda-78ab-4d66-b417-746fc36a6887",
+  "title" : "Giriselvan_Resume",
+  "createdAt" : [ 2026, 5, 12, 23, 13, 3, 504677800 ],
+  "updatedAt" : [ 2026, 5, 12, 23, 13, 3, 504677800 ],
+  "sections" : [ {
+    "id" : "d3ff99c1-10ed-4b24-851b-3f9bcdb86576",
+    "type" : "Summary",
+    "displayName" : "Summary",
+    "order" : 0,
+    "entries" : [ ]
+  }, {
+    "id" : "97e02085-89e8-462b-a409-c1327d68d867",
+    "type" : "Education",
+    "displayName" : "Education",
+    "order" : 1,
+    "entries" : [ ]
+  }, {
+    "id" : "6cfc63c3-33c1-478a-9045-705c290fc2de",
+    "type" : "certifications",
+    "displayName" : "certifications",
+    "order" : 2,
+    "entries" : [ ]
+  } ]
+}
