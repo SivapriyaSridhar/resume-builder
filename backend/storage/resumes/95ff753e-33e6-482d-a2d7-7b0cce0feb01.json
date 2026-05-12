@@ -1,0 +1,13 @@
+{
+  "id" : "95ff753e-33e6-482d-a2d7-7b0cce0feb01",
+  "title" : "Software Engineer Resume",
+  "createdAt" : [ 2026, 5, 12, 15, 56, 25, 718597600 ],
+  "updatedAt" : [ 2026, 5, 12, 15, 56, 25, 718597600 ],
+  "sections" : [ {
+    "id" : "627bc690-a6ce-4101-bd88-911aacfa0a24",
+    "type" : "education",
+    "displayName" : "Education",
+    "order" : 0,
+    "entries" : [ ]
+  } ]
+}

@@ -3,6 +3,7 @@ package com.resumebuilder.web;
 import com.resumebuilder.application.service.ResumeService;
 import com.resumebuilder.domain.model.Resume;
 import com.resumebuilder.web.dto.CreateResumeRequest;
+import com.resumebuilder.web.dto.CreateSectionRequest;
 import com.resumebuilder.web.dto.UpdateResumeRequest;
 
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,17 @@ public class ResumeController {
             @Valid @RequestBody UpdateResumeRequest request) {
 
         return resumeService.updateResume(id, request.getTitle());
+    }
+
+    @PostMapping("/{id}/sections")
+    public Resume addSection(
+            @PathVariable String id,
+            @Valid @RequestBody CreateSectionRequest request) {
+
+        return resumeService.addSection(
+                id,
+                request.getType(),
+                request.getDisplayName());
     }
 
 }

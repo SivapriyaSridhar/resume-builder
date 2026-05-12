@@ -2,6 +2,8 @@ package com.resumebuilder.application.service;
 
 import com.resumebuilder.application.repository.ResumeRepository;
 import com.resumebuilder.domain.model.Resume;
+import com.resumebuilder.domain.model.Section;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,4 +51,23 @@ public class ResumeService {
 
         return resumeRepository.save(existingResume);
     }
+
+    public Resume addSection(
+            String resumeId,
+            String type,
+            String displayName) {
+
+        Resume resume = resumeRepository.findById(resumeId)
+                .orElseThrow(() -> new RuntimeException("Resume not found"));
+
+        Section section = new Section();
+        section.setType(type);
+        section.setDisplayName(displayName);
+        section.setOrder(resume.getSections().size());
+
+        resume.getSections().add(section);
+
+        return resumeRepository.save(resume);
+    }
+
 }
