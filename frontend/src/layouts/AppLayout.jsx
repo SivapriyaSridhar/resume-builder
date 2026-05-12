@@ -16,12 +16,16 @@ function AppLayout({ children }) {
 
           <Link
             to="/"
-            className="bg-slate-800 hover:bg-slate-700 px-4 py-3 rounded-xl transition"
+           className="bg-slate-800 hover:bg-cyan-600 px-4 py-3 rounded-xl transition font-semibold"
           >
             Dashboard
           </Link>
 
         </nav>
+
+        <div className="mt-auto pt-10 text-slate-500 text-sm">
+  Resume Builder v1
+</div>
 
       </aside>
 
