@@ -28,3 +28,26 @@ export async function getResumeById(id) {
 
   return await response.json();
 }
+
+export async function addSection(
+  resumeId,
+  type,
+  displayName
+) {
+
+  const response = await fetch(
+    `${API_BASE_URL}/${resumeId}/sections`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        type,
+        displayName
+      })
+    }
+  );
+
+  return await response.json();
+}

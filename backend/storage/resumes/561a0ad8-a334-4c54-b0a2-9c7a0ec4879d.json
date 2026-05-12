@@ -3,5 +3,11 @@
   "title" : "Java Developer Resume",
   "createdAt" : [ 2026, 5, 12, 15, 51, 41, 969458000 ],
   "updatedAt" : [ 2026, 5, 12, 15, 51, 41, 969458000 ],
-  "sections" : [ ]
+  "sections" : [ {
+    "id" : "c2d1da82-81f5-4576-864a-9c8712a26aab",
+    "type" : "skills",
+    "displayName" : "Skills",
+    "order" : 0,
+    "entries" : [ ]
+  } ]
 }
