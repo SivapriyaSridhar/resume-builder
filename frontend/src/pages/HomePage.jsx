@@ -5,6 +5,8 @@ import {
   createResume
 } from "../services/resumeService";
 
+import AppLayout from "../layouts/AppLayout";
+
 function HomePage() {
 
   const [resumes, setResumes] = useState([]);
@@ -36,7 +38,7 @@ function HomePage() {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <AppLayout style={{ padding: "20px" }}>
 
       <h1>Resume Builder</h1>
 
@@ -80,7 +82,7 @@ function HomePage() {
 
       ))}
 
-    </div>
+    </AppLayout>
   );
 }
 

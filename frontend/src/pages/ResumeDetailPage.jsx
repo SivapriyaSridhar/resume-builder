@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getResumeById, addSection, addEntry } from "../services/resumeService";
 import sectionFields from "../config/sectionFields";
+import AppLayout from "../layouts/AppLayout";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -76,7 +77,7 @@ function ResumeDetailPage() {
   }
 
   return (
-  <div className="min-h-screen bg-slate-950 text-white p-8 max-w-7xl mx-auto">  
+  <AppLayout className="min-h-screen bg-slate-950 text-white p-8 max-w-7xl mx-auto">  
       <h1 className="text-5xl font-bold mb-4 text-cyan-400">{resume.title}</h1>
 
       <p className="text-slate-400 mb-6">ID: {resume.id}</p>
@@ -180,7 +181,7 @@ function ResumeDetailPage() {
       
       </div>
       ))}
-    </div>
+    </AppLayout>
   );
 }
 
