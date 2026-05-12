@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@media print {
+
+  aside {
+    display: none;
+  }
+
+  button {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+}
+
