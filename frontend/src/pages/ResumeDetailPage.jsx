@@ -77,7 +77,7 @@ function ResumeDetailPage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>{resume.title}</h1>
+      <h1 className="text-5xl font-bold text-blue-400">{resume.title}</h1>
 
       <p>ID: {resume.id}</p>
 
