@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getResumeById, addSection } from "../services/resumeService";
+import { getResumeById, addSection, addEntry } from "../services/resumeService";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -9,6 +9,8 @@ function ResumeDetailPage() {
 
   const [sectionType, setSectionType] = useState("");
   const [sectionDisplayName, setSectionDisplayName] = useState("");
+  const [fieldName, setFieldName] = useState("");
+  const [fieldValue, setFieldValue] = useState("");
 
   useEffect(() => {
     loadResume();
@@ -35,6 +37,29 @@ function ResumeDetailPage() {
 
     setSectionType("");
     setSectionDisplayName("");
+
+    loadResume();
+  }
+
+  async function handleAddEntry(sectionId) {
+    if (!fieldName.trim()) {
+      alert("Enter field name");
+      return;
+    }
+
+    if (!fieldValue.trim()) {
+      alert("Enter field value");
+      return;
+    }
+
+    const values = {
+      [fieldName]: fieldValue,
+    };
+
+    await addEntry(id, sectionId, values);
+
+    setFieldName("");
+    setFieldValue("");
 
     loadResume();
   }
@@ -86,6 +111,31 @@ function ResumeDetailPage() {
           <h3>{section.displayName}</h3>
 
           <p>Type: {section.type}</p>
+
+          <div
+            style={{
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Field Name"
+              value={fieldName}
+              onChange={(e) => setFieldName(e.target.value)}
+            />
+
+            <input
+              type="text"
+              placeholder="Field Value"
+              value={fieldValue}
+              onChange={(e) => setFieldValue(e.target.value)}
+            />
+
+            <button onClick={() => handleAddEntry(section.id)}>
+              Add Entry
+            </button>
+          </div>
 
           {section.entries.map((entry) => (
             <div

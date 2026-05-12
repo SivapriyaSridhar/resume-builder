@@ -51,3 +51,27 @@ export async function addSection(
 
   return await response.json();
 }
+
+
+export async function addEntry(
+  resumeId,
+  sectionId,
+  values
+) {
+
+  const response = await fetch(
+    `${API_BASE_URL}/${resumeId}/sections/${sectionId}/entries`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        values
+      })
+    }
+  );
+
+  return await response.json();
+}
+
