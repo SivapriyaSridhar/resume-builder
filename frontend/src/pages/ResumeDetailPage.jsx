@@ -76,7 +76,7 @@ function ResumeDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-8">
+  <div className="min-h-screen bg-slate-950 text-white p-8 max-w-7xl mx-auto">  
       <h1 className="text-5xl font-bold mb-4 text-cyan-400">{resume.title}</h1>
 
       <p className="text-slate-400 mb-6">ID: {resume.id}</p>
@@ -105,12 +105,16 @@ function ResumeDetailPage() {
         </button>
       </div>
 
-      <h2>Sections</h2>
+     <h2 className="text-3xl font-bold mb-6 text-white">
+  Sections
+</h2> 
 
       {resume.sections.map((section) => (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div
           key={section.id}
-          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6"
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 hover:border-cyan-500 transition duration-300"
         >
           <h3 className="text-2xl font-bold mb-3 text-cyan-300">
             {section.displayName}
@@ -158,13 +162,6 @@ function ResumeDetailPage() {
                 Add Entry
               </button>
             </div>
-
-            <button
-              className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
-              onClick={() => handleAddEntry(section.id)}
-            >
-              Add Entry
-            </button>
           </div>
 
           {section.entries.map((entry) => (
@@ -180,6 +177,8 @@ function ResumeDetailPage() {
             </div>
           ))}
         </div>
+      
+      </div>
       ))}
     </div>
   );
