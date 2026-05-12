@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getResumeById, addSection, addEntry } from "../services/resumeService";
 import sectionFields from "../config/sectionFields";
 import AppLayout from "../layouts/AppLayout";
+import ClassicTemplate from "../templates/ClassicTemplate";
+import ModernTemplate from "../templates/ModernTemplate";
 
 function ResumeDetailPage() {
   const { id } = useParams();
@@ -17,6 +19,9 @@ function ResumeDetailPage() {
     field2: "",
     field3: "",
   });
+
+  const [selectedTemplate, setSelectedTemplate] =
+  useState("modern");
 
   useEffect(() => {
     loadResume();
@@ -106,83 +111,155 @@ function ResumeDetailPage() {
         </button>
       </div>
 
+<div className="mb-8">
+
+  <h2 className="text-2xl font-bold mb-4">
+    Resume Template
+  </h2>
+
+  <select
+    value={selectedTemplate}
+    onChange={(e) =>
+      setSelectedTemplate(e.target.value)
+    }
+    className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-white"
+  >
+
+    <option value="modern">
+      Modern
+    </option>
+
+    <option value="classic">
+      Classic
+    </option>
+
+  </select>
+
+</div>
+
      <h2 className="text-3xl font-bold mb-6 text-white">
   Sections
 </h2> 
 
-      {resume.sections.map((section) => (
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {resume.sections.map((section) => (
+
+    <div
+      key={section.id}
+      className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 hover:border-cyan-500 transition duration-300"
+    >
+
+      <h3 className="text-2xl font-bold mb-3 text-cyan-300">
+        {section.displayName}
+      </h3>
+
+      <p>Type: {section.type}</p>
+
+      <div
+        style={{
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+      >
+
         <div
-          key={section.id}
-          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 hover:border-cyan-500 transition duration-300"
+          style={{
+            marginTop: "10px",
+            marginBottom: "10px",
+          }}
         >
-          <h3 className="text-2xl font-bold mb-3 text-cyan-300">
-            {section.displayName}
-          </h3>
 
-          <p>Type: {section.type}</p>
+          {(
+            sectionFields[section.type] || []
+          ).map((field, index) => (
 
-          <div
-            style={{
-              marginTop: "10px",
-              marginBottom: "10px",
-            }}
-          >
-            <div
-              style={{
-                marginTop: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              {(
-                sectionFields[section.type] || ["Field 1", "Field 2", "Field 3"]
-              ).map((field, index) => (
-                <input
-                  className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 mr-3 mb-3 text-white"
-                  key={index}
-                  type="text"
-                  placeholder={field.label}
-                  value={entryFields[field.key]}
-                  onChange={(e) =>
-                    setEntryFields({
-                      ...entryFields,
-                      [field.key]: e.target.value,
-                    })
-                  }
-                  style={{
-                    marginRight: "10px",
-                  }}
-                />
-              ))}
+            <input
+              className="bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 mr-3 mb-3 text-white"
+              key={index}
+              type="text"
+              placeholder={field.label}
+              value={entryFields[field.key]}
+              onChange={(e) =>
+                setEntryFields({
+                  ...entryFields,
+                  [field.key]: e.target.value,
+                })
+              }
+            />
 
-              <button
-                className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
-                onClick={() => handleAddEntry(section.id)}
-              >
-                Add Entry
-              </button>
-            </div>
-          </div>
-
-          {section.entries.map((entry) => (
-            <div
-              key={entry.id}
-              className="bg-slate-950 border border-slate-800 rounded-xl p-4 mt-4"
-            >
-              {(sectionFields[section.type] || []).map((field) => (
-                <p key={field.key} className="mb-2 text-slate-300">
-                  <strong>{field.label}:</strong> {entry.values[field.key]}
-                </p>
-              ))}
-            </div>
           ))}
+
+          <button
+            className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-lg font-semibold transition"
+            onClick={() => handleAddEntry(section.id)}
+          >
+            Add Entry
+          </button>
+
         </div>
-      
+
       </div>
+
+      {section.entries.map((entry) => (
+
+        <div
+          key={entry.id}
+          className="bg-slate-950 border border-slate-800 rounded-xl p-4 mt-4"
+        >
+
+          {(sectionFields[section.type] || []).map((field) => (
+
+            <p
+              key={field.key}
+              className="mb-2 text-slate-300"
+            >
+
+              <strong>
+                {field.label}:
+              </strong>
+
+              {" "}
+
+              {entry.values[field.key]}
+
+            </p>
+
+          ))}
+
+        </div>
+
       ))}
+
+    </div>
+
+  ))}
+
+</div>
+
+<div className="mt-16">
+
+  <h2 className="text-3xl font-bold mb-6">
+    Resume Preview
+  </h2>
+
+  {selectedTemplate === "modern" ? (
+
+    <ModernTemplate resume={resume} />
+
+  ) : (
+
+    <ClassicTemplate resume={resume} />
+
+  )}
+
+</div>
+
     </AppLayout>
   );
+
+
+  
 }
 
 export default ResumeDetailPage;
