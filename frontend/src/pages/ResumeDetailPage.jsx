@@ -1,0 +1,60 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getResumeById } from "../services/resumeService";
+
+function ResumeDetailPage() {
+
+  const { id } = useParams();
+
+  const [resume, setResume] = useState(null);
+
+  useEffect(() => {
+    loadResume();
+  }, []);
+
+  async function loadResume() {
+
+    const data = await getResumeById(id);
+
+    setResume(data);
+  }
+
+  if (!resume) {
+    return <h2>Loading...</h2>;
+  }
+
+  return (
+    <div style={{ padding: "20px" }}>
+
+      <h1>{resume.title}</h1>
+
+      <p>ID: {resume.id}</p>
+
+      <h2>Sections</h2>
+
+      {resume.sections.map((section) => (
+
+        <div
+          key={section.id}
+          style={{
+            border: "1px solid gray",
+            padding: "10px",
+            marginBottom: "10px"
+          }}
+        >
+
+          <h3>{section.displayName}</h3>
+
+          <p>Type: {section.type}</p>
+
+          <p>Entries: {section.entries.length}</p>
+
+        </div>
+
+      ))}
+
+    </div>
+  );
+}
+
+export default ResumeDetailPage;
